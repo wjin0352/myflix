@@ -36,4 +36,48 @@ describe Video do
 
   it { should belong_to :category }
 
+  # implement method for search of videos
+  # implement tests where you can have functionality to find one video, many, none
+
+  describe '.search_by_title' do
+
+    it "returns an empty array if there is no match" do
+      southpark = Video.create(title: 'southpark', description: 'violent kids cartoon', cover_image_url: '/tmp/south_park.jpg')
+      simpsons = Video.create(title: 'simpsons', description: 'homer simpson', cover_image_url: '/tmp/south_park.jpg')
+
+      expect(Video.search_by_title("hello")).to eq([])
+    end
+
+    it "returns an array of one video for an exact match" do
+      southpark = Video.create(title: 'southpark', description: 'violent kids cartoon', cover_image_url: '/tmp/south_park.jpg')
+      simpsons = Video.create(title: "simpsons", description: 'homer simpson', cover_image_url: '/tmp/south_park.jpg')
+
+      expect(Video.search_by_title("simpsons")).to eq([simpsons])
+    end
+
+    it "returns an array of one video for a partial match" do
+      southpark = Video.create(title: 'southpark', description: 'violent kids cartoon', cover_image_url: '/tmp/south_park.jpg')
+      simpsons = Video.create(title: "simpsons", description: 'homer simpson', cover_image_url: '/tmp/south_park.jpg')
+
+      expect(Video.search_by_title('simp')).to eq([simpsons])
+    end
+
+    it "returns an array of all videos ordered by created_at" do
+      southpark = Video.create(title: 'southpark', description: 'violent kids cartoon', cover_image_url: '/tmp/south_park.jpg', created_at: 1.day.ago)
+      simpsons = Video.create(title: "simpsons", description: 'homer simpson', cover_image_url: '/tmp/south_park.jpg')
+
+      expect(Video.search_by_title('so')).to eq([simpsons, southpark])
+    end
+
+    it "returns an empty array for a search with an empty string" do
+      southpark = Video.create(title: 'southpark', description: 'violent kids cartoon', cover_image_url: '/tmp/south_park.jpg', created_at: 1.day.ago)
+      simpsons = Video.create(title: "simpsons", description: 'homer simpson', cover_image_url: '/tmp/south_park.jpg')
+
+      expect(Video.search_by_title('')).to eq([])
+    end
+
+  end
+
+
+
 end
