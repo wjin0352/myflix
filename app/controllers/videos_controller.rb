@@ -12,6 +12,11 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
   end
 
+  def search
+    # binding.pry
+    @categories = Category.all
+
+  end
 
   private
 
