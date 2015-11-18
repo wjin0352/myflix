@@ -9,7 +9,7 @@ comedy = Category.create(name: 'comedy')
 drama = Category.create(name: 'drama')
 mystery = Category.create(name: 'mystery')
 
-family_guy = Video.create(title: 'Family Guy', description: 'Comedy series', small_cover_url: '/tmp/family_guy.jpg', large_cover_url: '/tmp/family_guy.jpg', cover_image_url: '/tmp/family_guy.jpg', category: comedy)
+family_guy = Video.create(title: 'family guy', description: 'Comedy series', small_cover_url: '/tmp/family_guy.jpg', large_cover_url: '/tmp/family_guy.jpg', cover_image_url: '/tmp/family_guy.jpg', category: comedy)
 
 futurama = Video.create(title: 'futurama', description: 'Comedy cartoon', small_cover_url: '/tmp/futurama.jpg', large_cover_url: '/tmp/futurama.jpg', cover_image_url: '/tmp/futurama.jpg', category: comedy)
 

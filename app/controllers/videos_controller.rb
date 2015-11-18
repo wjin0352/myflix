@@ -13,9 +13,7 @@ class VideosController < ApplicationController
   end
 
   def search
-    # binding.pry
-    @categories = Category.all
-
+    @videos = Video.search_by_title(params[:name])
   end
 
   private
